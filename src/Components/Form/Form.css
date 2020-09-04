@@ -1,0 +1,157 @@
+/****************** FORM ******************/
+.hidden {
+    display: none
+}
+
+form {
+    background-color: #363d1f;
+    width: 100%;
+    position: absolute;
+    bottom: 0vh;
+    padding: 7% 5%;
+    height: 22vh;
+}
+
+.form-flexbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.form-group {
+    margin-bottom: 1vh;
+    align-items: center;
+}
+
+.form-submit {
+    align-self: center;
+}
+
+input[type="text"] {
+    padding: 1.25vh 25px;
+    margin: 0 10px;
+    width: 300px;
+    outline: none;
+    font-size: 1em;
+    font-weight: 300;
+    letter-spacing: .03em;
+    color: #d0c689;
+    background-color: #424b27;
+    text-align: left;
+    border:1px solid #d0c689;
+    }
+
+input[type=number] {
+    padding: 1.25vh 25px;
+    margin: 0 10px;
+    width: 300px;
+    outline: none;
+    font-size: 1em;
+    font-weight: 300;
+    background-color: #424b27;
+    color: #d0c689; 
+    text-align: left;
+    border:1px solid #d0c689;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    margin-left: 10px; 
+}
+
+::placeholder {
+    color: #d0c689;
+}
+
+input:focus::placeholder{
+    color:transparent;
+} 
+
+button {
+    padding: 1.25vh 0 ;
+    margin: 0 10px;
+    width: 125px;
+    background-color: #d0c689;
+    color: #515C30;
+    font-size: 1em;
+    font-weight: 100;
+    letter-spacing: .05em;
+    border:1px solid #515C30;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+.error__message_container{
+    position: absolute;
+    top: 40%;
+    width: 40%;
+    margin: 0 30%;
+    padding: 3vh 50px;
+    background: white;
+    border: solid 3px red;
+}
+
+.error__message_container p {
+    color: red;
+    font-size: 2em;
+    text-align: center;
+}
+
+/**************************************** For Tablets and Up *********************************/
+@media (min-width: 1000px){
+
+    form {
+        padding: 0 5%;
+        height: 14vh;
+    }
+
+    .form-flexbox {
+        flex-direction: row;
+        justify-content: space-between
+    }
+
+    .form-group {
+        flex-basis: 40%;
+        margin-bottom: 0;
+    }    
+
+    .form-submit {
+        flex-basis: 15%;
+    }
+
+    input[type="text"] {
+        padding: 1.5vh 25px;
+        font-size: 1.15em;
+        width: 100%;
+    }
+
+    input[type=number] {
+        padding: 1.5vh 25px;
+        font-size: 1.15em;
+        width: 100%;
+    }
+
+    button {
+        padding: 1.5vh 0;
+        font-size: 1.15em;
+        width: 200px;
+    }
+
+}
+
+.result-test {
+    position: absolute;
+    width: 50%;
+    top: 40%;
+    left: 25%;
+    text-align: center;
+    background-color: red;
+    color: white
+}
