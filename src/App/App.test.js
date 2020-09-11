@@ -23,7 +23,7 @@ test('renders app without error', () => {
   expect(app.length).toBe(1)
 });
 
-describe('if no parks have been searched', () => {
+describe('renders all components', () => {
   const wrapper = setup()
   test('renders logo', () => {
     const logo = findByTestAttr(wrapper, 'logo')
@@ -35,20 +35,3 @@ describe('if no parks have been searched', () => {
   })
 })
 
-describe('if parks have been searched', () => {
-  const wrapper = setup(null, { results: true })
-  test('does not render logo', () => {
-      const logo = findByTestAttr(wrapper, 'logo')
-      expect(logo.text()).toBe('')
-  })
-  test('does not render form', () => {
-      const form = findByTestAttr(wrapper, 'component-form')
-      expect(form.text()).toBe('')
-  })
-  test('renders result card', () => {
-
-  })
-  test('renders close button', () => {
-
-  })
-})

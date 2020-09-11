@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { Route } from 'react-router-dom';
+import Context from '../ApiContext'
 
-import Form from '../Components/Form/Form.js'
-import ApiContext from '../ApiContext'
+import Home from '../Components/Home/Home'
+import ResultList from '../Components/ResultList/ResultList'
 import './App.css'
 
 
@@ -10,41 +12,30 @@ class App extends Component {
     super(props)
 
     this.state = {
-      results: false,
-      loading: null,
-      parks: []
+      loading: false,
+      parks: [],
+      results: [], 
     }
-
   }
   
   render() {
+    const contextValue = {
+      results: this.state.results,
+    }
     return (
-      <ApiContext.Provider value={{parks: this.state.parks}}>
-      <div data-test="app" className="App">
-        {this.state.results
-          ? 
-          (<header data-test="logo" className="Logo">
-          </header>
-          )
-          :
-          (<header data-test="logo" className="Logo">
-              <h1>Discover</h1>
-              <h2>Our National Parks</h2>
-            </header>
-          )
-        }
-        <main className='App__main'>
-          {this.state.results 
-            ? (<div className="Search-Form" data-test="component-form">
-              </div>)
-            :
-            (<div className="Search-Form" data-test="component-form">
-              <Form/>
-            </div>)
-          }
-        </main>
-      </div>
-      </ApiContext.Provider>
+        <div data-test="app" className="App">
+          <Context.Provider value={contextValue}>
+            <Route
+                exact
+                path='/'
+                component={Home}
+              />
+              <Route
+                path='/results'
+                component={ResultList}
+              />
+          </Context.Provider>
+        </div>
     )
   }
 }

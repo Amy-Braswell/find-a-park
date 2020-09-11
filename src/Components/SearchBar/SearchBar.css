@@ -1,7 +1,4 @@
 /****************** FORM ******************/
-.hidden {
-    display: none
-}
 
 form {
     background-color: #363d1f;
@@ -55,11 +52,6 @@ input[type=number] {
     border:1px solid #d0c689;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-    margin-left: 10px; 
-}
-
 ::placeholder {
     color: #d0c689;
 }
@@ -67,6 +59,25 @@ input[type=number]::-webkit-outer-spin-button {
 input:focus::placeholder{
     color:transparent;
 } 
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    display:none;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px #424b27 inset;
+    -webkit-text-fill-color: #d0c689;
+    box-shadow: 0 0 0 50px #424b27 inset;
+    caret-color: #d0c689;
+}
+
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 50px #424b27 inset;
+    -webkit-text-fill-color: #d0c689;
+    box-shadow: 0 0 0 50px #424b27 inset;
+    caret-color: #d0c689;
+}  
 
 button {
     padding: 1.25vh 0 ;
@@ -77,7 +88,7 @@ button {
     font-size: 1em;
     font-weight: 100;
     letter-spacing: .05em;
-    border:1px solid #515C30;
+    border:2px solid #d0c689;
 }
 
 button:hover {
@@ -90,19 +101,56 @@ button:focus {
 
 .error__message_container{
     position: absolute;
-    top: 40%;
+    top: 45%;
     width: 40%;
     margin: 0 30%;
-    padding: 3vh 50px;
-    background: white;
-    border: solid 3px red;
+    border: 3px solid #C23C47;
+    background-color: #FFF6F6;
+    color:  #C23C47;
+    padding: 10px;
 }
 
 .error__message_container p {
-    color: red;
-    font-size: 2em;
     text-align: center;
+    margin: 15px;
+    font-size: 1.3em;
+    letter-spacing: .05em;
+    color:  #C23C47;
 }
+
+.loading-container {
+    position: absolute;
+    top: 25vh;
+    width: 30%;
+    margin: 0 35%;
+    height: 45vh;
+    background-color: #fefdfd;
+    border-radius: 10px;
+}
+
+.loading {
+    position: absolute;
+    top: 17vh;
+    left: 40%;
+    border: 8px solid #c8cbc0;
+    border-radius: 50%;
+    border-top: 8px solid #424b27;
+    width: 80px;
+    height: 80px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
 
 /**************************************** For Tablets and Up *********************************/
 @media (min-width: 1000px){
@@ -146,12 +194,4 @@ button:focus {
 
 }
 
-.result-test {
-    position: absolute;
-    width: 50%;
-    top: 40%;
-    left: 25%;
-    text-align: center;
-    background-color: red;
-    color: white
-}
+

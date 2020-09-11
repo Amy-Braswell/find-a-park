@@ -1,0 +1,38 @@
+.returned__park {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: #d0c689;
+  }
+
+  .returned-park-card {
+    flex-basis: 100%;
+    border: solid 1px black;
+  }
+  
+  .returned-park-text {
+    color: black;
+    line-height: 1.5em;
+    margin: 0 5% 3vh;
+  }
+  
+  .returned-park a {
+    color: #424b27;
+  }
+  
+  .returned-park-photo {
+    padding: 5px 30px 50px 30px;
+    width:100%;
+    height: auto;
+    max-height: 30vh;
+    overflow: hidden;
+  }
+  
+  .returned-park-photo >img {
+    /* height: auto; */
+    height: 28vh;
+    width: 80%;
+    object-fit: contain;
+    margin: 0 10%;
+    overflow: hidden;
+  }

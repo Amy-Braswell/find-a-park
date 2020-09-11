@@ -1,5 +1,7 @@
 import React from 'react'
 
-export default React.createContext({
-    parks: []
+const Context =  React.createContext({
+    results: []
 })
+
+export default Context

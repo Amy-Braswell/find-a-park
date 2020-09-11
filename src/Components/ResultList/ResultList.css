@@ -1,0 +1,51 @@
+.result-list {
+    position: absolute;
+    top: 0;
+    min-height: 100vh;
+    min-width: 100%;
+    padding: 5vh 0 2vh;
+    background-color: #d0c689;
+    z-index: 1000;
+  }
+
+.button-close {
+    position: absolute;
+    top: 1vh;
+    right: 0;
+    z-index: 1000;
+    padding: .5vh;
+    border: 0;
+}
+
+.ul--grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  padding: 0 3%;
+}
+
+.li--grid-item {
+  /* setting child to flex also stretches the 
+  child vertically so all children are the
+  same height */
+  display: flex;
+  margin: 1vh 3%;
+}
+
+/***************************For Tablets and Up****************************/
+@media (min-width: 1000px){
+
+  .ul--grid-container{
+    grid-template-columns: 33% 33% 33%;
+    max-width: 100%;
+  }
+}
+
+/***************************For Desktops and Up****************************/
+@media (min-width: 1680px){
+
+  .ul--grid-container{
+    grid-template-columns: 25% 25% 25% 25%;
+  }
+
+}
