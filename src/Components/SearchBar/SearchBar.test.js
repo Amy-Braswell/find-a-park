@@ -48,7 +48,7 @@ test('initial state is as expected', ()=> {
     expect(wrapper.state().limit).toBe(50)
     expect(wrapper.state().limitValid).toBe(null)
     expect(wrapper.state().limitValidationMessage).toBe(null)
-    expect(wrapper.state().loading).toBe(null)
+    expect(wrapper.state().loading).toBe(false)
 })
 
 describe('state will update as user uses form', () => {

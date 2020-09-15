@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom';
-import Context from '../ApiContext'
 
-import Home from '../Components/Home/Home'
+import SearchBar from '../Components/SearchBar/SearchBar'
 import ResultList from '../Components/ResultList/ResultList'
 import './App.css'
 
@@ -12,29 +10,44 @@ class App extends Component {
     super(props)
 
     this.state = {
-      loading: false,
+      error: null,
       parks: [],
-      results: [], 
+      results: [],
+      stateCode: null,
+      stateCodeValid: null,
+      stateCodeValidationMessage: null,
+      limit: 50,
+      limitValid: null,
+      limitValidationMessage: null,
+      loading: false,
     }
   }
-  
+
   render() {
-    const contextValue = {
-      results: this.state.results,
-    }
     return (
         <div data-test="app" className="App">
-          <Context.Provider value={contextValue}>
-            <Route
-                exact
-                path='/'
-                component={Home}
-              />
-              <Route
-                path='/results'
-                component={ResultList}
-              />
-          </Context.Provider>
+          <header data-test="logo" className="Logo">
+            <h1>Discover</h1>
+            <h2>Our National Parks</h2>
+          </header>
+
+          <main className='App__main'>
+            {this.state.results.length ? 
+              (
+              <div className="result-list-container">
+                <ResultList
+                    results = {this.state.results} 
+                />
+              </div>
+              )
+            : 
+              (
+              <div className="Search-Form" data-test="component-form">
+                <SearchBar/>
+              </div>
+              ) 
+            }
+          </main>
         </div>
     )
   }

@@ -17,9 +17,21 @@ export default class SearchBar extends Component {
             limitValid: null,
             limitValidationMessage: null,
             loading: false,
+            isModalOpen: false
         }
         this.inputStateCodeRef = React.createRef()
         this.inputLimitRef = React.createRef()
+    }
+
+    handleClose= () =>{
+        this.setState(
+            { 
+                isModalOpen: false,
+                results: [] 
+            }
+        )
+        this.clearStateCodeInput()
+        this.clearLimitInput()
     }
 
     updateStateCode = (stateCode) => {
@@ -54,7 +66,7 @@ export default class SearchBar extends Component {
         }
     }
 
-    handleStateCodeClick = (e) => {
+    clearStateCodeInput = (e) => {
         this.inputStateCodeRef.current.value = ''
     }
 
@@ -84,7 +96,7 @@ export default class SearchBar extends Component {
         }
     }
 
-    handleLimitClick = (e) => {
+    clearLimitInput = (e) => {
         this.inputLimitRef.current.value = ''
     }
 
@@ -129,10 +141,20 @@ export default class SearchBar extends Component {
                 description: park.description,
                 })
             );
+            // reset App to starting state except for results & isModalOpen
             this.setState({
-                results:results
-            }) 
-            console.log(results)       
+                results:results, 
+                parks: [],
+                error: null,
+                stateCode: null,
+                stateCodeValid: null,
+                stateCodeValidationMessage: null,
+                limit: 50,
+                limitValid: null,
+                limitValidationMessage: null,
+                loading: false,
+                isModalOpen: true
+            })        
         })
         .catch(err => {
             this.setState({
@@ -190,7 +212,7 @@ export default class SearchBar extends Component {
                                     className='search-this-state'
                                     name='state-code'
                                     aria-required='true'
-                                    onClick={event => this.handleStateCodeClick(event.target.value)}
+                                    onClick={event => this.clearStateCodeInput(event.target.value)}
                                     onChange={event => this.updateStateCode(event.target.value)}
                                 />
                             </label>
@@ -205,7 +227,7 @@ export default class SearchBar extends Component {
                                     className='search-limit'
                                     name='search-limit'
                                     aria-required='false'
-                                    onClick={event => this.handleLimitClick(event.target.value)}
+                                    onClick={event => this.clearLimitInput(event.target.value)}
                                     onChange={event => this.updateSearchLimit(event.target.value)}
                                 />
                             </label>
@@ -223,6 +245,8 @@ export default class SearchBar extends Component {
                         (<div className="result-list-container">
                             <ResultList
                                 results = {this.state.results} 
+                                isOpen={this.state.isModalOpen} 
+                                handleClose={this.handleClose}
                             />
                         </div>)
                         :

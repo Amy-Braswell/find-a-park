@@ -1,16 +1,14 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 import NPSLogo from '../../images/nps_logo.png'
 import './Card.css'
 
 
-export default class Card extends Component {
-
-    render(){
-        const {photo, name, state, description, directions, website} = this.props
-        return(
-            <div className='returned__park'>  
-                <div className='returned-park-card'>                        
+export default function Card(props){
+    const {photo, name, state, description, directions, website} = props
+    return(
+        <div className='returned__park'>  
+            <div className='returned-park-card'>                        
                 <div className='returned-park-photo'>
                     {photo === null ?
                         <img src = {NPSLogo} alt='NPS-logo'></img>
@@ -32,8 +30,8 @@ export default class Card extends Component {
                     <p className='returned-park-text'>{website}</p>
 
                 </div>
-                </div> 
-            </div>
-        )
-    }
+            </div> 
+        </div>
+    )
+
 }

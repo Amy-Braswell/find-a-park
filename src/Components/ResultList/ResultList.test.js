@@ -6,10 +6,7 @@ import renderer from 'react-test-renderer';
 import { findByTestAttr } from '../../../test/testUtils'
 import ResultList from './ResultList'
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import List from './List';
-import renderer from 'react-test-renderer';
+
 
 /**  
 * Factory function to create a shallow wrapper for the App component
@@ -91,7 +88,7 @@ test('renders NPS Logo if no photo in park info', () => {
 
 })
 
-test('links in park details work', () => {
+test('links in park cards work', () => {
 
 })
 
