@@ -62,35 +62,34 @@ describe('renders all elements', () => {
   })
 })
 
-
-// describe('close button works', () => {
-
-//   test('state.isResultListOpen equals false after Close button is clicked', ()=> {
-//     const handleClose = jest.fn();
-//     const wrapper = render(<ResultList onClick={handleClose} />);
-//     wrapper.setState({ isResultListOpen: true });
-//     wrapper.find('.close-button').simulate('click');
-//     expect(wrapper.state().isResultListOpen).toBe(false) 
-//   })
-//   test('state.results equals [] after Close button is clicked', ()=> {
-//     const handleClose = jest.fn();
-//     const wrapper = render(<ResultList onClick={handleClose} />);
-//     wrapper.setState({ results });
-//     wrapper.find('.close-button').simulate('click');
-//     expect(wrapper.state().results).toBe([]) 
-//   })
-//   test('state.stateCode equals an empty string after Close button is clicked', ()=> {
-//     const handleCloseMock = jest.fn();
-//     const wrapper = render(<ResultList onClick={handleCloseMock} />);
-//     wrapper.setState({stateCode: 'Washington', stateCodeValid: false, stateCodeValidationMessage: 'Please enter the two letter state code'});
-//     wrapper.find('.close-button').simulate('click');
-//     expect(wrapper.state().stateCode).toBe('') 
-//   })
-//   test('state.limit equals an empty string after Close button is clicked', ()=> {
-//     const handleCloseMock = jest.fn();
-//     const wrapper = render(<ResultList onClick={handleCloseMock} />);
-//     wrapper.setState({ limit: '25' });
-//     wrapper.find('.close-button').simulate('click');
-//     expect(wrapper.state().stateCode).toBe(50) 
-//   })
-// })
+// Can't get close button tests to work
+describe('close button works', () => {
+  test('state.isResultListOpen equals false after Close button is clicked', ()=> {
+    const handleClose = jest.fn();
+    const wrapper = render(<ResultList onClick={handleClose} />);
+    wrapper.setState({ isResultListOpen: true });
+    wrapper.find('.close-button').simulate('click');
+    expect(wrapper.state().isResultListOpen).toBe(false) 
+  })
+  test('state.results equals [] after Close button is clicked', ()=> {
+    const handleClose = jest.fn();
+    const wrapper = render(<ResultList onClick={handleClose} />);
+    wrapper.setState({ results });
+    wrapper.find('.close-button').simulate('click');
+    expect(wrapper.state().results).toBe([]) 
+  })
+  test('state.stateCode equals an empty string after Close button is clicked', ()=> {
+    const handleCloseMock = jest.fn();
+    const wrapper = render(<ResultList onClick={handleCloseMock} />);
+    wrapper.setState({stateCode: 'Washington', stateCodeValid: false, stateCodeValidationMessage: 'Please enter the two letter state code'});
+    wrapper.find('.close-button').simulate('click');
+    expect(wrapper.state().stateCode).toBe('') 
+  })
+  test('state.limit equals an empty string after Close button is clicked', ()=> {
+    const handleCloseMock = jest.fn();
+    const wrapper = render(<ResultList onClick={handleCloseMock} />);
+    wrapper.setState({ limit: '25' });
+    wrapper.find('.close-button').simulate('click');
+    expect(wrapper.state().stateCode).toBe(50) 
+  })
+})

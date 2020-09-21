@@ -36,6 +36,7 @@ export default class SearchBar extends Component {
     }
 
     updateStateCode = (stateCode) => {
+        // How do I write test for Line 40?
         this.setState({
             stateCodeValid: null, 
             limitValid: null,
@@ -137,7 +138,7 @@ export default class SearchBar extends Component {
             error: null
             })
             const resultArray = this.state.parks
-              
+            // How do I write test for Line 142?  
             const results = resultArray.map(park => ({  
                 id: park.id,
                 photo: park.images[0] || null,
@@ -148,6 +149,7 @@ export default class SearchBar extends Component {
                 })
             );
             // reset App to starting state except for results & isModalOpen
+            // How do I write test for Line 153?
             this.setState({
                 results:results, 
                 parks: [],
@@ -163,6 +165,7 @@ export default class SearchBar extends Component {
             })       
         })
         .catch(err => {
+            // How do I write test for Line 169?
             this.setState({
             error: err.message
             })
