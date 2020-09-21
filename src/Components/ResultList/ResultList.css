@@ -8,13 +8,12 @@
     z-index: 1000;
   }
 
-.button-close {
-    position: absolute;
-    top: 1vh;
-    right: 0;
+.close-button {
     z-index: 1000;
-    padding: .5vh;
+    padding: 0 1.5vh 2vh;
     border: 0;
+    margin-left: 88%;
+    width: 10%;
 }
 
 .ul--grid-container {

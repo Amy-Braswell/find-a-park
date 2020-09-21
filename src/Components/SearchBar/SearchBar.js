@@ -17,16 +17,17 @@ export default class SearchBar extends Component {
             limitValid: null,
             limitValidationMessage: null,
             loading: false,
-            isModalOpen: false
+            isResultListOpen: false
         }
         this.inputStateCodeRef = React.createRef()
         this.inputLimitRef = React.createRef()
+        this.isStateCodeValid = this.isStateCodeValid.bind(this)
     }
 
     handleClose= () =>{
         this.setState(
             { 
-                isModalOpen: false,
+                isResultListOpen: false,
                 results: [] 
             }
         )
@@ -57,7 +58,7 @@ export default class SearchBar extends Component {
         } else {
             this.setState({
                 stateCodeValidationMessage: null,
-                stateCodeValid: true
+                stateCodeValid: true,
             },
             () => {
                 this.isSearchLimitValid(e)
@@ -68,6 +69,9 @@ export default class SearchBar extends Component {
 
     clearStateCodeInput = (e) => {
         this.inputStateCodeRef.current.value = ''
+        this.setState({
+            stateCode:''
+        })
     }
 
     updateSearchLimit = (limit) => {
@@ -98,6 +102,9 @@ export default class SearchBar extends Component {
 
     clearLimitInput = (e) => {
         this.inputLimitRef.current.value = ''
+        this.setState({
+            limit: ''
+        })
     }
 
     getParksByState = () => {
@@ -124,9 +131,9 @@ export default class SearchBar extends Component {
             return res
         })
         .then(res => res.json())
-        .then(data => {
+        .then(result => {
             this.setState({
-            parks: data.data,
+            parks: result.data,
             error: null
             })
             const resultArray = this.state.parks
@@ -137,7 +144,6 @@ export default class SearchBar extends Component {
                 name: park.name,
                 state: park.states,
                 url: park.url,
-                directions: park.directionsInfo,
                 description: park.description,
                 })
             );
@@ -153,8 +159,8 @@ export default class SearchBar extends Component {
                 limitValid: null,
                 limitValidationMessage: null,
                 loading: false,
-                isModalOpen: true
-            })        
+                isResultListOpen: true
+            })       
         })
         .catch(err => {
             this.setState({
@@ -169,30 +175,30 @@ export default class SearchBar extends Component {
             <>
                 <section className='SearchParks'>
                     {this.state.stateCodeValid === false ? (
-                            <div className='error__message_container' data-test='error-message-state-code-message'>
+                            <div data-test='error-message-state-code-message' className='error__message_container'>
                                 <p className='error__message'>{this.state.stateCodeValidationMessage}</p>
                             </div>
                     ) : (
-                            <div className='hidden' data-test='error-message-state-code-message'>
+                            <div data-test='error-message-state-code-message' className='hidden'>
                             </div>
                     )}
 
                     {this.state.limitValid === false ? (
-                            <div className='error__message_container' data-test='error-message-limit-message'>
+                            <div data-test='error-message-limit-message' className='error__message_container'>
                                 <p className='error__message'>{this.state.limitValidationMessage}</p>
                             </div>
                     ) : (
-                            <div className='hidden' data-test='error-message-limit-message'>
+                            <div data-test='error-message-limit-message' className='hidden'>
                             </div>
                     )}
                      
                     {this.state.loading === true ? (                        
                            <div className='loading-container'>
-                                <div className='loading' data-test='loading-message'>
+                                <div  data-test='loading-message' className='loading'>
                                 </div>
                             </div>
                     ) : (
-                            <div className='hidden' data-test='no-loading-message'>
+                            <div data-test='no-loading-message' className='hidden'>
                             </div>
                     )}
 
@@ -206,6 +212,7 @@ export default class SearchBar extends Component {
                             <label htmlFor='state-code'>
                                 <input
                                     data-test='state-code-input'
+                                    label = 'state-code'
                                     ref={this.inputStateCodeRef}
                                     type='text'
                                     placeholder='Enter State (two letter code)'
@@ -233,7 +240,7 @@ export default class SearchBar extends Component {
                             </label>
                         </div>
                         <div className='button form-submit'>
-                            <button type='submit' data-test='submit-button'>
+                            <button type='submit' data-test='submit-button' className='submit'>
                                 Submit
                             </button>
                         </div>
@@ -245,7 +252,7 @@ export default class SearchBar extends Component {
                         (<div className="result-list-container">
                             <ResultList
                                 results = {this.state.results} 
-                                isOpen={this.state.isModalOpen} 
+                                isOpen={this.state.isResultListOpen} 
                                 handleClose={this.handleClose}
                             />
                         </div>)
@@ -258,3 +265,5 @@ export default class SearchBar extends Component {
         )
     }
 }
+
+

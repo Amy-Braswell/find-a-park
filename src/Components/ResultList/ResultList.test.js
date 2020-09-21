@@ -1,11 +1,8 @@
 import React from 'react'
-import { shallow } from 'enzyme'
-import ReactDOM from 'react-dom';
-import renderer from 'react-test-renderer';
+import { render } from 'enzyme'
 
 import { findByTestAttr } from '../../../test/testUtils'
 import ResultList from './ResultList'
-
 
 
 /**  
@@ -15,83 +12,85 @@ import ResultList from './ResultList'
 * @param {any} state - Initial state for setup.
 * @returns {ShallowWrapper}
 */
-// const setup = (props={}, state=null) => {
-//   const wrapper = shallow(<ResultList {...props} />)
-//   if (state) wrapper.setState(state)
-//   return wrapper
-// }
+const setup = (props={}, state=null) => {
+  const wrapper = render(<ResultList {...props} />)
+  if (state) wrapper.setState(state)
+  return wrapper
+}
 
+const results = [
+  {id: "1",
+  description: "Park description",
+  directions: "Park Directions",
+  photo: 
+      {
+      altText: "alt-text-photo",
+      caption: "photo caption",
+      credit: "photo credit",
+      title: "photo title",
+      url: "photo url",
+      },
+  name: "Park Name", 
+  state: "Park State", 
+  url: "Park Website"
+  },
+  {id: "2",
+  description: "Park description",
+  directions: "Park Directions",
+  name: "Park Name",
+  photo: null,
+  state: "Park State",
+  url: "Park Website"
+  }
+]
 
-//describe('Card Test Suite', () => {
-  // //Smoke Test
-  // it('renders without crashing', () => {
-  //     // start by creating an element to render the component into
-  //     const div = document.createElement('div');
-  //     ReactDOM.render(<List 
-  //         key={STORE.list.id}
-  //         header={STORE.list.header}
-  //         cards={STORE.list.cardIds}
-  //         />,  
-  //         div); 
-  //     ReactDOM.unmountComponentAtNode(div);
-  // });
+const wrapper = setup({results}, null)
 
-  //Snapshot Test
-//   it('renders the UI as expected', () => {
-//       const tree = renderer
-//           .create(<List 
-//               key={STORE.list.id}
-//               header={STORE.list.header}
-//               cards={STORE.list.cardIds}
-//           />) 
-//           .toJSON();
-//       expect(tree).toMatchSnapshot();
-
-//   });
-// });
-
-
-
-
-describe('renders cards when results are returned', () => {
-  //   const mockState = `results: [
-  //   {
-  //   description: "description",
-  //   directions: "directions",
-  //   id: "id-1",
-  //   name: "name",
-  //   photo:{url: "https://www.nps.gov/common/uploads/structured_data/3C84BC00-1DD8-B71B-0BD2CA9CA44675E9.jpg"},
-  //   state: "WA",
-  //   url: "https://www.nps.gov/ebla/index.htm"
-  //   },
-
-  //   {  
-  //   description: "description",
-  //   directions: "directions",
-  //   id: "id-2",
-  //   name: "name",
-  //   photo:{url: "https://www.nps.gov/common/uploads/structured_data/3C7E8577-1DD8-B71B-0B5ABB3F175DDD81.jpg"},
-  //   state: "WA",
-  //   url: "https://www.nps.gov/ebla/index.htm"
-  //   }
-  // ]`
-
-  // const wrapper = setup(null, mockState)
-
-test('renders all elements', () => {
-
+describe('renders all elements', () => {
+  
+  test('renders close button', () => {
+    const closeButton = findByTestAttr(wrapper, 'close-button')
+    expect(closeButton.length).toBe(1)
   })
-
+  test('renders ul', () => {
+    const resultUL = findByTestAttr(wrapper, 'result-ul')
+    expect(resultUL.length).toBe(1)
+  })
+  test('renders Card as li', () => {
+    const cardAsLI = findByTestAttr(wrapper, 'card-as-li')
+    expect(cardAsLI.length).toBe(2)
+  })
 })
 
-test('renders NPS Logo if no photo in park info', () => {
 
-})
+// describe('close button works', () => {
 
-test('links in park cards work', () => {
-
-})
-
-test('state.loading equals false after Close button is clicked', ()=> {
-
-})
+//   test('state.isResultListOpen equals false after Close button is clicked', ()=> {
+//     const handleClose = jest.fn();
+//     const wrapper = render(<ResultList onClick={handleClose} />);
+//     wrapper.setState({ isResultListOpen: true });
+//     wrapper.find('.close-button').simulate('click');
+//     expect(wrapper.state().isResultListOpen).toBe(false) 
+//   })
+//   test('state.results equals [] after Close button is clicked', ()=> {
+//     const handleClose = jest.fn();
+//     const wrapper = render(<ResultList onClick={handleClose} />);
+//     wrapper.setState({ results });
+//     wrapper.find('.close-button').simulate('click');
+//     expect(wrapper.state().results).toBe([]) 
+//   })
+//   test('state.stateCode equals an empty string after Close button is clicked', ()=> {
+//     const handleCloseMock = jest.fn();
+//     const wrapper = render(<ResultList onClick={handleCloseMock} />);
+//     wrapper.setState({stateCode: 'Washington', stateCodeValid: false, stateCodeValidationMessage: 'Please enter the two letter state code'});
+//     wrapper.find('.close-button').simulate('click');
+//     expect(wrapper.state().stateCode).toBe('') 
+//   })
+//   test('state.limit equals an empty string after Close button is clicked', ()=> {
+//     const handleCloseMock = jest.fn();
+//     const wrapper = render(<ResultList onClick={handleCloseMock} />);
+//     wrapper.setState({ limit: '25' });
+//     wrapper.find('.close-button').simulate('click');
+//     expect(wrapper.state().stateCode).toBe(50) 
+//   })
+// })

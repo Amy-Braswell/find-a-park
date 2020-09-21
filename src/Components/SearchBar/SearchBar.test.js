@@ -1,7 +1,7 @@
-// STILL NEED TO WRITE TESTS FOR METHODS???
+// npm test -- --coverage will run coverage report
 
 import React from 'react'
-import { shallow } from 'enzyme'
+import { mount, shallow } from 'enzyme'
 import moxios from 'moxios'
 
 import { findByTestAttr } from '../../../test/testUtils'
@@ -49,46 +49,36 @@ test('initial state is as expected', ()=> {
     expect(wrapper.state().limitValid).toBe(null)
     expect(wrapper.state().limitValidationMessage).toBe(null)
     expect(wrapper.state().loading).toBe(false)
+    expect(wrapper.state().isResultListOpen).toBe(false)
 })
 
 describe('state will update as user uses form', () => {
-
     const wrapper = setup(null, { stateCode: '', limit: 50 })
-
     test('entering text in State input will update state.stateCode', () => {
         // find input and enter value
         const stateCodeInput = findByTestAttr(wrapper, 'state-code-input')
         stateCodeInput.simulate('change', {target: {value: 'WA'}})
         expect(wrapper.state().stateCode).toBe('WA')
     })
-
     test('entering a number in Limit input will update state.limit', () => {
         // find input and enter value
         const stateCodeInput = findByTestAttr(wrapper, 'search-limit-input')
         stateCodeInput.simulate('change', {target: {value: 10}})
         expect(wrapper.state().limit).toBe(10)
     })
-
-    xtest('clicking in State input will clear input box', () => {
-        // test results try to run handleStateCodeClick() on an undefined object
-
-        //find input and click
-            const stateCodeInput = findByTestAttr(wrapper, 'state-code-input')
-            stateCodeInput.simulate('click')
-            wrapper.update() // don't think I need???
-            expect(wrapper.find('input').props().value).toBe('')
-            expect(wrapper.state().stateCode).toBe('')    
+    test('clicking in State input will update state.stateCode', () => {
+        const clearStateCodeInputMock = jest.fn();
+        const wrapper = mount(<SearchBar onClick={clearStateCodeInputMock} />);
+        wrapper.setState({stateCode: 'Washington', stateCodeValid: false, stateCodeValidationMessage: 'Please enter the two letter state code'});
+        wrapper.find('.search-this-state').simulate('click');
+        expect(wrapper.state().stateCode).toBe('') 
     })
-
-    xtest('clicking in Limit input will clear input box', () => {
-        // test results try to run handleStateCodeClick() on an undefined object
-
-        //find input and click
-        const stateCodeInput = findByTestAttr(wrapper, 'search-limit-input')
-        stateCodeInput.simulate('click')
-        wrapper.update() // don't think I need???
-        expect(wrapper.find('input').props().value).toBe('')
-        expect(wrapper.state().stateCode).toBe('')  
+    test('clicking in Limit input will update state.limit', () => {
+        const clearLimitInputMock = jest.fn();
+        const wrapper = mount(<SearchBar onClick={clearLimitInputMock} />);
+        wrapper.setState({ limit: 75 });
+        wrapper.find('.search-limit').simulate('click');
+        expect(wrapper.state().limit).toBe('') 
     })
 
 })
@@ -213,7 +203,28 @@ describe('returns appropriate errors if value is not valid', () => {
     })    
 })
 
-describe('search form submit triggers loading then returns results', () => {
+describe('Validation messages get set', ()=> {
+    test('isStateCodeValid', () => {
+        const isStateCodeValidMock = jest.fn();
+        const wrapper = mount(<SearchBar onSubmit={isStateCodeValidMock} />);
+        wrapper.setState({stateCode: 'WA'});
+        const submitButton = findByTestAttr(wrapper, 'submit-button')
+        expect(submitButton.length).toBe(1)
+        submitButton.simulate('submit');
+        expect(wrapper.state().stateCodeValidationMessage).toBe(null) 
+    })
+    test('isLimitValid', () => {
+        const isStateCodeValidMock = jest.fn();
+        const wrapper = mount(<SearchBar onSubmit={isStateCodeValidMock} />);
+        wrapper.setState({stateCode: 'WA', stateCodeValid: true, stateCodeValidationMessage: null, limit: 25 });
+        const submitButton = findByTestAttr(wrapper, 'submit-button')
+        expect(submitButton.length).toBe(1)
+        submitButton.simulate('submit');
+        expect(wrapper.state().limitValidationMessage).toBe('') 
+    })
+})
+
+describe('submitting form triggers loading spinner then returns results', () => {
     test('will show loading upon submit', () => {
         const wrapper = setup(null, 
             {   
@@ -230,7 +241,6 @@ describe('search form submit triggers loading then returns results', () => {
         // find button and click
         const submitButton = findByTestAttr(wrapper, 'submit-button')
         submitButton.simulate('click')
-        wrapper.update()
         // test that state.loading is true
         expect(wrapper.state().loading).toBe(true)
         // find loading message and test value
@@ -238,52 +248,57 @@ describe('search form submit triggers loading then returns results', () => {
         expect(loadingMessage.length).toBe(1)
     })
 
-    describe('server is called upon submit', () => {
-
-        const wrapper = setup(null, 
-            {   
-                parks: [],
-                results: []
-            })
-
-        const STORE = { 
-            results: [
-                {id: "1",
-                description: "Park description",
-                directions: "Park Directions",
-                photo: 
-                    {
-                    altText: "alt-text-photo",
-                    caption: "photo caption",
-                    credit: "photo credit",
-                    title: "photo title",
-                    url: "photo url",
-                    },
-                name: "Park Name", 
-                state: "Park State", 
-                url: "Park Website"
+    test('server is called upon submit', () => {
+        const STORE = [
+            {id: "1",
+            description: "Park description",
+            directions: "Park Directions",
+            photo: 
+                {
+                altText: "alt-text-photo",
+                caption: "photo caption",
+                credit: "photo credit",
+                title: "photo title",
+                url: "photo url",
                 },
-                {id: "2",
-                description: "Park description",
-                directions: "Park Directions",
-                name: "Park Name",
-                photo: null,
-                state: "Park State",
-                url: "Park Website"
-                }
-            ]
-        };
-
+            name: "Park Name", 
+            state: "Park State", 
+            url: "Park Website"
+            },
+            {id: "2",
+            description: "Park description",
+            directions: "Park Directions",
+            name: "Park Name",
+            photo: null,
+            state: "Park State",
+            url: "Park Website"
+            }
+        ]
+        
         beforeEach(() => {
             moxios.install()
         })
         afterEach(() => {
             moxios.uninstall()
         })
-
-    // is the response added to state?
-    xtest('adds results to state', () => {
+        
         const results = STORE
+
+        const wrapper = setup(null, 
+            {   
+                parks: [],
+                results: [],
+                stateCode: 'WA',
+                stateCodeValid: true,
+                stateCodeValidationMessage: null,
+                limit: 50,
+                limitValid: true,
+                limitValidationMessage: null,
+                loading: true
+            })
+  
+        const submitButton = findByTestAttr(wrapper, 'submit-button')
+        submitButton.simulate('click')
 
         moxios.wait(() => {
             const request = moxios.requests.mostRecent()
@@ -291,18 +306,13 @@ describe('search form submit triggers loading then returns results', () => {
                 status: 200,
                 response: results,
             })
+            // the data that comes back needs to look like the store
             .then(data =>{
-                this.setState({
-                    results: STORE
-                })
+                expect(wrapper.state().results).toEqual(STORE)
             })
-        })
-
-        expect(wrapper.state().results).toBe(STORE)
-        expect(wrapper.state().results).toEqual(STORE)
-    
+        })    
     })
 })
 
-})
+
 

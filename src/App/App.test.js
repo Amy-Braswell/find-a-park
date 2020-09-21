@@ -1,3 +1,5 @@
+// npm test -- --coverage will run coverage report
+
 import React from 'react'
 import { shallow } from 'enzyme'
 

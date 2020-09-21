@@ -7,3 +7,5 @@
 export const findByTestAttr = (wrapper, val) => {
     return wrapper.find(`[data-test="${val}"]`);
   }
+
+// npm test -- --coverage will run coverage report

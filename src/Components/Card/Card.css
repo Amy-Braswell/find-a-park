@@ -5,34 +5,51 @@
     background-color: #d0c689;
   }
 
-  .returned-park-card {
-    flex-basis: 100%;
-    border: solid 1px black;
-  }
+.returned-park-card {
+  flex-basis: 100%;
+  border: solid 1px black;
+}
+
+.returned-park-photo {
+  width:100%;
+  height: auto;
+  max-height: 30vh;
+  overflow: hidden;
+  margin-bottom: 3vh;
+}
+
+.returned-park-photo >img {
+  height: 30vh;
+  width: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.returned-park-state,
+.returned-park-state-long {
+  margin-top: 5px;
+}
   
-  .returned-park-text {
-    color: black;
-    line-height: 1.5em;
-    margin: 0 5% 3vh;
-  }
-  
-  .returned-park a {
-    color: #424b27;
-  }
-  
-  .returned-park-photo {
-    padding: 5px 30px 50px 30px;
-    width:100%;
-    height: auto;
-    max-height: 30vh;
-    overflow: hidden;
-  }
-  
-  .returned-park-photo >img {
-    /* height: auto; */
-    height: 28vh;
-    width: 80%;
-    object-fit: contain;
-    margin: 0 10%;
-    overflow: hidden;
-  }
+.returned-park-description {
+  color: black;
+  line-height: 1.5em;
+  margin: 5vh 5% 3vh;
+  height: 33vh;
+}
+
+.returned-park-link{
+  padding: 2vh 5%;
+  margin-bottom: -1%;
+}
+
+.returned-park-link a{
+  color: #424b27;
+  font-size: 1.2em;
+  text-decoration: none;
+}
+
+footer {
+  padding-bottom: 1vh
+}
+
+

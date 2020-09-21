@@ -5,31 +5,36 @@ import './Card.css'
 
 
 export default function Card(props){
-    const {photo, name, state, description, directions, website} = props
+    const {photo, name, state, description, website} = props
     return(
         <div className='returned__park'>  
-            <div className='returned-park-card'>                        
-                <div className='returned-park-photo'>
+            <div data-test='park-card' className='returned-park-card'>                        
+                
+                <div data-test='park-image-div' className='returned-park-photo'>
                     {photo === null ?
-                        <img src = {NPSLogo} alt='NPS-logo'></img>
-                        : <img src={photo.url} alt='park-detail'></img>
+                        <img data-test='park-image' src = {NPSLogo} alt='NPS-logo' className='logo'></img>
+                        : <img data-test='park-image' src={photo.url} alt='park-detail' className='park-photo'></img>
                     }
                 </div>
 
-                <div className="details">
-                    <h2 className='returned-park-name'>{name}</h2>
+                <div data-test='park-details-div' className="details">
+                    {name.length < 20 ?
+                    <h2 data-test='park-name' className='returned-park-name'>{name}</h2>
+                    : <h2 data-test='park-name' className='returned-park-name-long'>{name.substring(0,19)}...</h2>
+                    }
 
                     {state.length < 30 ?
-                    <h3 className='returned-park-state'>{state}</h3>
+                    <h3 data-test='park-state' className='returned-park-state'>{state}</h3>
                     :
-                    <h3 className='returned-park-state'>{state.substring(0,29)}...</h3>
+                    <h3 data-test='park-state' className='returned-park-state-long'>{state.substring(0,29)}...</h3>
                     }
-                    <p className='returned-park-text'>{description}</p>
-
-                    <p className='returned-park-text'>{directions}</p>
-                    <p className='returned-park-text'>{website}</p>
+                    <p data-test='park-description' className='returned-park-description'>{description}</p>
 
                 </div>
+                
+                <footer>
+                    <p data-test='park-website' className='returned-park-link'><a data-test='park-website-link' href={website} target="blank">Website</a></p>
+                </footer>
             </div> 
         </div>
     )
