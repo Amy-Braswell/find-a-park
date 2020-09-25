@@ -6,7 +6,7 @@ import './ResultList.css'
 
 export default function ResultList(props){
     return(
-        <div className='result-list' isOpen={props.isOpen}>
+        <div className='result-list' open={props.isResultListOpen}>
 
             <button data-test='close-button' className='close-button' onClick={props.handleClose}> 
                 Close

@@ -21,7 +21,6 @@ const setup = (props={}, state=null) => {
     return wrapper
   }
 
-
 describe('renders all elements', () => {
     const wrapper = setup()
         test('renders state-code input', () => {
@@ -224,7 +223,7 @@ describe('Validation messages get set', ()=> {
     })
 })
 
-describe('submitting form triggers loading spinner then returns results', () => {
+describe('server shows loading spinner and then results', () => {
     test('will show loading upon submit', () => {
         const wrapper = setup(null, 
             {   
@@ -248,7 +247,7 @@ describe('submitting form triggers loading spinner then returns results', () => 
         expect(loadingMessage.length).toBe(1)
     })
 
-    test('server is called upon submit', () => {
+    test('server returns results', () => {
         const STORE = [
             {id: "1",
             description: "Park description",
@@ -313,6 +312,8 @@ describe('submitting form triggers loading spinner then returns results', () => 
         })    
     })
 })
+
+
 
 
 

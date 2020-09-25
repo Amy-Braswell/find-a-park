@@ -22,9 +22,10 @@ export default class SearchBar extends Component {
         this.inputStateCodeRef = React.createRef()
         this.inputLimitRef = React.createRef()
         this.isStateCodeValid = this.isStateCodeValid.bind(this)
+        this.handleClose = this.handleClose.bind(this)
     }
 
-    handleClose= () =>{
+    handleClose = () =>{
         this.setState(
             { 
                 isResultListOpen: false,
@@ -255,7 +256,7 @@ export default class SearchBar extends Component {
                         (<div className="result-list-container">
                             <ResultList
                                 results = {this.state.results} 
-                                isOpen={this.state.isResultListOpen} 
+                                isResultListOpen={this.state.isResultListOpen} 
                                 handleClose={this.handleClose}
                             />
                         </div>)
