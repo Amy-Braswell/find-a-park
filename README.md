@@ -15,13 +15,9 @@
     <li>Install NPM Packages</li>
         <ul style="list-style-type:none"><li>npm install</li></ul>
     <li>Enter your API in config.js</li>
-        <ul style="list-style: none;">
-            <li>const REACT_APP_API_KEY = 'ENTER YOUR API'</li>
-        </ul>
+        <p>const REACT_APP_API_KEY = 'ENTER YOUR API'</p>
     <li>Enter the search URL in config.js</li>
-        <ul style="list-style: none;">
-            <li>const REACT_APP_SEARCH_URL='https://developer.nps.gov/api/v1/parks'</li>
-        </ul>   
+        <p>const REACT_APP_SEARCH_URL='https://developer.nps.gov/api/v1/parks'</p>  
     </ol>
 <p>Feel free to use my code as a starting point. The NPS Data API documentation is available at https://www.nps.gov/subjects/developer/api-documentation.htm if you would like to connect with a different endpoint to return additional information.</p>
 
