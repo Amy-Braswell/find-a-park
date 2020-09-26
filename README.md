@@ -14,9 +14,15 @@
     <li>Clone the repo <a href="git clone https://github.com/Amy-Braswell/find-a-park.git" target="blank">git clone https://github.com/Amy-Braswell/find-a-park.git</a></li>
     <li>Install NPM Packages</li>
         <ul style="list-style-type:none"><li>npm install</li></ul>
-    <li>Enter your API in config.js</li>
-        <ul style="list-style-type:none"><li>const API_KEY = 'ENTER YOUR API';</li></ul>
-</ol>
+    <li>Enter your API in .env.local</li>
+        <ul style="list-style-type:none">
+            <li>const REACT_APP_API_KEY = 'ENTER YOUR API'</li>
+        </ul>
+    <li>Enter the search URL in .env.local</li>
+        <ul style="list-style-type:none">
+            <li>REACT_APP_SEARCH_URL='https://developer.nps.gov/api/v1/parks'</li>
+        </ul>   
+    </ol>
 <p>Feel free to use my code as a starting point. The NPS Data API documentation is available at https://www.nps.gov/subjects/developer/api-documentation.htm if you would like to connect with a different endpoint to return additional information.</p>
 
 <h3>BUILT WITH</h3>
