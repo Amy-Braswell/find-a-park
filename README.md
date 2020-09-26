@@ -1,4 +1,4 @@
-<h2> Find a Park... </br> Play in the Dirt! </h2>
+<h2> Find a Park... Play in the Dirt! </h2>
 
 <img src="https://user-images.githubusercontent.com/55002971/94320607-03d6d200-ff53-11ea-984f-1cb2b2d4bcba.jpg" width="45%"></img> <img src="https://user-images.githubusercontent.com/55002971/94320616-06d1c280-ff53-11ea-8723-c532e08d404e.jpg" width="45%"></img> 
 
@@ -15,12 +15,12 @@
     <li>Install NPM Packages</li>
         <ul style="list-style-type:none"><li>npm install</li></ul>
     <li>Enter your API in config.js</li>
-        <ul style="list-style-type:none">
+        <ul style="list-style-type:none;">
             <li>const REACT_APP_API_KEY = 'ENTER YOUR API'</li>
         </ul>
     <li>Enter the search URL in config.js</li>
-        <ul style="list-style-type:none">
-            <li>REACT_APP_SEARCH_URL='https://developer.nps.gov/api/v1/parks'</li>
+        <ul style="list-style-type:none;">
+            <li>const REACT_APP_SEARCH_URL='https://developer.nps.gov/api/v1/parks'</li>
         </ul>   
     </ol>
 <p>Feel free to use my code as a starting point. The NPS Data API documentation is available at https://www.nps.gov/subjects/developer/api-documentation.htm if you would like to connect with a different endpoint to return additional information.</p>
