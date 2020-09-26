@@ -133,6 +133,8 @@ export default class SearchBar extends Component {
             return res
         })
         .then(res => res.json())
+        // .then(res => res.text())          
+        // .then(text => console.log(text))
         .then(result => {
             this.setState({
             parks: result.data,
