@@ -15,11 +15,11 @@
     <li>Install NPM Packages</li>
         <ul style="list-style-type:none"><li>npm install</li></ul>
     <li>Enter your API in config.js</li>
-        <ul style="list-style-type:none;">
+        <ul style="list-style: none;">
             <li>const REACT_APP_API_KEY = 'ENTER YOUR API'</li>
         </ul>
     <li>Enter the search URL in config.js</li>
-        <ul style="list-style-type:none;">
+        <ul style="list-style: none;">
             <li>const REACT_APP_SEARCH_URL='https://developer.nps.gov/api/v1/parks'</li>
         </ul>   
     </ol>
