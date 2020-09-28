@@ -5,8 +5,9 @@ form {
     width: 100%;
     position: absolute;
     bottom: 0vh;
-    padding: 7% 5%;
-    height: 22vh;
+    padding: 6vh 5% 6.5vh;
+    height: 20vh;
+    margin-bottom: -.5vh;
 }
 
 .form-flexbox {
