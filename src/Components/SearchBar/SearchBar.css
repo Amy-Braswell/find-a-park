@@ -3,8 +3,7 @@
 form {
     background-color: #363d1f;
     width: 100%;
-    max-width: 100%;
-    position: fixed;
+    position: absolute;
     bottom: 0vh;
     padding: 6vh 5% 6.5vh;
     height: 20vh;

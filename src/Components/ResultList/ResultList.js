@@ -1,4 +1,5 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Card from '../Card/Card'
 import './ResultList.css'
@@ -9,7 +10,7 @@ export default function ResultList(props){
         <div className='result-list' open={props.isResultListOpen}>
 
             <button data-test='close-button' className='close-button' onClick={props.handleClose}> 
-                Close
+            <span> <FontAwesomeIcon icon={['fa', 'times-circle']} />{' '}</span>
             </button>
 
             <ul data-test='result-ul' className = 'ul--grid-container'>

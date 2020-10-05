@@ -8,11 +8,12 @@
     z-index: 1000;
   }
 
+
 .close-button {
     z-index: 1000;
     padding: 0 1.5vh 2vh;
     border: 0;
-    margin-left: 78%;
+    margin-left: 85%;
     width: 10%;
 }
 
