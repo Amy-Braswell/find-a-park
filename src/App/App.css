@@ -2,21 +2,32 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    width: 100%;
+    max-width: 100%;
 }
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
 
 .hidden {
   display: none;
 }
+
+.bg_div {
+  background-image: url("../images/header_img_phone.jpg");
+  background-position: 0 30%;
+  background-attachment: fixed;
+  height: calc(100vh - 150px);
+  min-height: calc(100vh - 50px);
+  max-height: calc(100vh - 50px);
+  overflow-y: hidden;
+  background-size: cover
+}
   
 body {
-  font-family: 'Roboto', sans-serif;
-  color: #6f6930;
-  background-image: url("../images/header_img.jpg");
-  background-position: 0 30%;
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  max-height: 100vh;
+  font-family: 'Roboto';
 }
 
 ul {
@@ -26,16 +37,21 @@ ul {
 h1 {
   color: #424b27;
   font-family: 'Passion One', cursive;
-  font-size: 6em;
+  font-size: 5.5em;
+  max-width: 90%;
   letter-spacing: .03em;
+  padding: 2vh 5% 0;
   margin: 0 5% -2vh;
   }
 
 h2 {
+  color: #424b27;
   font-family: 'Dorsa', sans-serif;
   text-transform: uppercase;
   font-size: 3.5em;
   letter-spacing: .1em;
+  padding: 0 5%;
+  max-width: 90%;
   margin: 0 5%;
 }
 
@@ -60,4 +76,11 @@ p{
   font-size: .9em;
 }
 
+/*************************************** For Tablets and Up *********************************/
+@media (min-width: 1000px){
 
+  .bg_div {
+    background-image: url("../images/header_img.jpg");
+    background-position: 0 30%;
+  }
+}

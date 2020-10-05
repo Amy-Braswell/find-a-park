@@ -7,6 +7,7 @@
 
 .returned-park-card {
   flex-basis: 100%;
+  justify-content: center;
   border: solid 1px black;
 }
 
@@ -33,8 +34,8 @@
 .returned-park-description {
   color: black;
   line-height: 1.5em;
-  margin: 5vh 5% 3vh;
-  height: 20vh;
+  margin: 5vh 5% 5vh;
+  height: 24vh;
 }
 
 .returned-park-link{

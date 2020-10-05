@@ -3,7 +3,7 @@
     top: 0;
     min-height: 100vh;
     min-width: 100%;
-    padding: 5vh 0 2vh;
+    padding: 5vh 5% 2vh;
     background-color: #d0c689;
     z-index: 1000;
   }
@@ -12,7 +12,7 @@
     z-index: 1000;
     padding: 0 1.5vh 2vh;
     border: 0;
-    margin-left: 88%;
+    margin-left: 78%;
     width: 10%;
 }
 

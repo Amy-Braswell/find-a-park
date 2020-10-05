@@ -3,7 +3,8 @@
 form {
     background-color: #363d1f;
     width: 100%;
-    position: absolute;
+    max-width: 100%;
+    position: fixed;
     bottom: 0vh;
     padding: 6vh 5% 6.5vh;
     height: 20vh;
@@ -19,17 +20,19 @@ form {
 
 .form-group {
     margin-bottom: 1vh;
-    align-items: center;
+    width: 300px;
+    max-width: 100%;
 }
 
 .form-submit {
-    align-self: center;
+    width: 300px;
+    max-width: 100%;
 }
 
 input[type="text"] {
     padding: 1.25vh 25px;
-    margin: 0 10px;
     width: 300px;
+    max-width: 100%;
     outline: none;
     font-size: 1em;
     font-weight: 300;
@@ -42,8 +45,8 @@ input[type="text"] {
 
 input[type=number] {
     padding: 1.25vh 25px;
-    margin: 0 10px;
     width: 300px;
+    max-width: 100%;
     outline: none;
     font-size: 1em;
     font-weight: 300;
@@ -81,9 +84,10 @@ input:-webkit-autofill:focus {
 }  
 
 button {
-    padding: 1.25vh 0 ;
-    margin: 0 10px;
+    padding: 1.25vh 0;
+    margin: 0 87.5px;
     width: 125px;
+    max-width: 100%;
     background-color: #d0c689;
     color: #515C30;
     font-size: 1em;
@@ -122,8 +126,8 @@ button:focus {
 .loading-container {
     position: absolute;
     top: 25vh;
-    width: 30%;
-    margin: 0 35%;
+    width: 70%;
+    margin: 0 15%;
     height: 45vh;
     background-color: #fefdfd;
     border-radius: 10px;
@@ -191,6 +195,10 @@ button:focus {
         padding: 1.5vh 0;
         font-size: 1.15em;
         width: 200px;
+    }
+
+    .loading-container {
+        width: 30%;
     }
 
 }
