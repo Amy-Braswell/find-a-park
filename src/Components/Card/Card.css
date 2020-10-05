@@ -26,6 +26,11 @@
   overflow: hidden;
 }
 
+.returned-park-name {
+  width: 100%;
+  padding: 0;
+}
+
 .returned-park-state,
 .returned-park-state-long {
   margin-top: 5px;
