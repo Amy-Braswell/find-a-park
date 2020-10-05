@@ -36,7 +36,7 @@ h1 {
   color: #424b27;
   font-family: 'Passion One', cursive;
   font-size: 5.5em;
-  max-width: 90%;
+  max-width: 100%;
   letter-spacing: .03em;
   padding: 2vh 5% 0;
   margin: 0 5% -2vh;
@@ -49,8 +49,17 @@ h2 {
   font-size: 3.5em;
   letter-spacing: .1em;
   padding: 0 5%;
-  max-width: 90%;
+  max-width: 100%;
   margin: 0 5%;
+}
+
+.Logo > h1 {
+  position: fixed;
+}
+
+.Logo > h2 {
+  position: fixed;
+  top: 13vh;
 }
 
 h3 {
