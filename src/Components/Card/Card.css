@@ -26,9 +26,9 @@
   overflow: hidden;
 }
 
-.returned-park-name {
-  width: 100%;
-  padding: 0;
+.returned-park-name,
+.returned-park-name-long {
+  margin: 0;
 }
 
 .returned-park-state,
@@ -39,13 +39,14 @@
 .returned-park-description {
   color: black;
   line-height: 1.5em;
-  margin: 5vh 5% 5vh;
-  height: 24vh;
+  margin: 5vh 5% 10vh;
+  height: 30vh;
 }
 
 .returned-park-link{
   padding: 2vh 5%;
   margin-bottom: -1%;
+  margin-top: 3vh;
 }
 
 .returned-park-link a{
@@ -56,6 +57,17 @@
 
 footer {
   padding-bottom: 1vh
+}
+
+
+/*************************************** For Tablets and Up *********************************/
+@media (min-width: 1000px){
+  .returned-park-description {
+    color: black;
+    line-height: 1.5em;
+    margin: 5vh 5% 15vh;
+    height: 30vh;
+  }
 }
 
 

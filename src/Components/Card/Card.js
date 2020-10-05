@@ -23,10 +23,10 @@ export default function Card(props){
                     : <h2 data-test='park-name' className='returned-park-name-long'>{name.substring(0,19)}...</h2>
                     }
 
-                    {state.length < 30 ?
+                    {state.length < 26 ?
                     <h3 data-test='park-state' className='returned-park-state'>{state}</h3>
                     :
-                    <h3 data-test='park-state' className='returned-park-state-long'>{state.substring(0,29)}...</h3>
+                    <h3 data-test='park-state' className='returned-park-state-long'>{state.substring(0,25)}...</h3>
                     }
                     <p data-test='park-description' className='returned-park-description'>{description}</p>
 

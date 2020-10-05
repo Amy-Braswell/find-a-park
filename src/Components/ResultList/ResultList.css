@@ -1,10 +1,12 @@
 .result-list {
     position: absolute;
     top: 0;
+    left: 0;
     min-height: 100vh;
     min-width: 100%;
     padding: 5vh 5% 2vh;
     background-color: #d0c689;
+    overflow-x: hidden;
     z-index: 1000;
   }
 
@@ -13,7 +15,7 @@
     z-index: 1000;
     padding: 0 1.5vh 2vh;
     border: 0;
-    margin-left: 85%;
+    margin-left: 87%;
     width: 10%;
 }
 
@@ -34,7 +36,9 @@
 
 /***************************For Tablets and Up****************************/
 @media (min-width: 1000px){
-
+  .close-button {
+    margin-left: 89%;
+  }
   .ul--grid-container{
     grid-template-columns: 33% 33% 33%;
     max-width: 100%;
@@ -43,6 +47,10 @@
 
 /***************************For Desktops and Up****************************/
 @media (min-width: 1680px){
+
+  .close-button {
+    margin-left: 90.5%;
+  }
 
   .ul--grid-container{
     grid-template-columns: 25% 25% 25% 25%;

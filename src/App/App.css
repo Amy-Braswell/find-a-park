@@ -8,6 +8,9 @@
   display: none;
 }
 
+html, body {
+  overflow-x: hidden;
+}
 
 .hidden {
   display: none;
@@ -17,6 +20,7 @@
   background-image: url("../images/header_img_phone.jpg");
   background-position: 0 30%;
   background-attachment: fixed;
+  background-repeat: none;
   height: calc(100vh - 150px);
   min-height: calc(100vh - 50px);
   max-height: calc(100vh - 50px);
@@ -35,31 +39,26 @@ ul {
 h1 {
   color: #424b27;
   font-family: 'Passion One', cursive;
-  font-size: 5.5em;
-  max-width: 100%;
+  font-size: 4.5em;
   letter-spacing: .03em;
   padding: 2vh 5% 0;
-  margin: 0 5% -2vh;
+  margin: 2vh 5% 0;
   }
 
 h2 {
   color: #424b27;
   font-family: 'Dorsa', sans-serif;
   text-transform: uppercase;
-  font-size: 3.5em;
+  font-size: 2.5em;
   letter-spacing: .1em;
   padding: 0 5%;
   max-width: 100%;
   margin: 0 5%;
 }
 
-.Logo > h1 {
-  position: fixed;
-}
-
-.Logo > h2 {
-  position: fixed;
-  top: 13vh;
+header {
+    position: fixed;
+    width: 100%;
 }
 
 h3 {
@@ -68,9 +67,9 @@ h3 {
   font-size: 1.3em;
 }
 
-h3>span {
+h3 > span {
   font-size: .9em;
-  color: 505a32;
+  color: #505a32;
 }
 
 h4{
@@ -88,6 +87,28 @@ p{
 
   .bg_div {
     background-image: url("../images/header_img.jpg");
-    background-position: 0 30%;
+    background-repeat: none;
+    height: calc(100vh - 15px);
+    min-height: calc(100vh - 15px);
+    max-height: calc(100vh - 15px);
+    overflow-y: hidden;
+    background-size: cover; 
   }
+
+  header {
+    position: fixed;
+  }
+
+  /* h1 {
+    font-size: 5.5em;
+    padding: 2vh 0 0;
+    margin: 2vh 5% 0;
+    }
+  
+  h2 {
+    font-size: 2.5em;
+    margin: 0 5%;
+    padding: 0;
+  } */
+
 }
