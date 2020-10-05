@@ -29,6 +29,7 @@
 .returned-park-name,
 .returned-park-name-long {
   margin: 0;
+  padding: 0 5%;
 }
 
 .returned-park-state,
