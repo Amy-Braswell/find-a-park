@@ -6,6 +6,8 @@
 
 *::-webkit-scrollbar {
   display: none;
+  height: 0;
+  width: 0;
 }
 
 html, body {
@@ -17,15 +19,18 @@ html, body {
 }
 
 .bg_div {
-  background-image: url("../images/header_img_phone.jpg");
-  background-position: 0 30%;
-  background-attachment: fixed;
-  background-repeat: none;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 50px);
   min-height: calc(100vh - 50px);
   max-height: calc(100vh - 50px);
   overflow-y: hidden;
-  background-size: cover
+  object-fit: cover;
+  z-index: 100
+}
+
+.bkgrnd {
+  position: fixed;
+  top: 0;
+  height: 95%;
 }
   
 body {
@@ -43,6 +48,7 @@ h1 {
   letter-spacing: .03em;
   padding: 2vh 5% 0;
   margin: 2vh 5% 0;
+  z-index: 1000;
   }
 
 h2 {
@@ -54,11 +60,13 @@ h2 {
   padding: 0 5%;
   max-width: 100%;
   margin: 0 5%;
+  z-index: 1000;
 }
 
 header {
-    position: fixed;
     width: 100%;
+    position: fixed;
+    top: 0;
 }
 
 h3 {
@@ -86,8 +94,6 @@ p{
 @media (min-width: 1000px){
 
   .bg_div {
-    background-image: url("../images/header_img.jpg");
-    background-repeat: none;
     height: calc(100vh - 15px);
     min-height: calc(100vh - 15px);
     max-height: calc(100vh - 15px);
@@ -107,4 +113,29 @@ p{
     font-size: 3.5em;
   }
 
+}
+
+/*************************************** For Laptops and Up *********************************/
+@media (min-width: 1440px){
+
+  .bg_div {
+    height: calc(100vh - 15px);
+    min-height: calc(100vh - 15px);
+    max-height: calc(100vh - 15px);
+    overflow-y: hidden;
+    background-size: cover; 
+  }
+
+  .bkgrnd {
+    height: auto;
+    top: -18vh;
+    width: 100%;
+  }
+}
+
+/*************************************** For Desktops and Up *********************************/
+@media (min-width: 1680px){
+  .bkgrnd {
+    top: -25vh;
+  }
 }

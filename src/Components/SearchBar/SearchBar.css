@@ -183,12 +183,14 @@ button:focus {
 
     input[type="text"] {
         padding: 1.5vh 25px;
+        margin-right: 3%;
         font-size: 1.15em;
         width: 100%;
     }
 
     input[type=number] {
         padding: 1.5vh 25px;
+        margin-left: 3%;
         font-size: 1.15em;
         width: 100%;
     }
@@ -207,7 +209,15 @@ button:focus {
     .loading {
         left: 38%;
     }
-
 }
 
 
+@media (min-width: 1680px){
+    input[type="text"] {
+        margin-right: 1%;
+    }
+
+    input[type=number] {
+        margin-left: 1%;
+    }
+}
