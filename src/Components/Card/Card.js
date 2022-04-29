@@ -4,6 +4,7 @@ import NPSLogo from '../../images/nps_logo.png'
 import './Card.css'
 
 
+
 export default function Card(props){
     const {photo, name, state, description, website} = props
     return(

@@ -1,4 +1,4 @@
-// npm test -- --coverage will run coverage report
+// "npm test -- --coverage" will run coverage report
 
 import React from 'react'
 import { mount, shallow } from 'enzyme'

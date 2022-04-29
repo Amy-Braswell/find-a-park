@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 
 import ResultList from '../ResultList/ResultList'
+import {Button, Col, Form} from 'react-bootstrap'
+import Alert from 'react-bootstrap/Alert'
 import './SearchBar.css'
 
 export default class SearchBar extends Component {
@@ -8,6 +10,7 @@ export default class SearchBar extends Component {
         super()
         this.state = {
             error: null,
+            alert: false,
             parks: [],
             results: [],
             stateCode: null,
@@ -21,8 +24,6 @@ export default class SearchBar extends Component {
         }
         this.inputStateCodeRef = React.createRef()
         this.inputLimitRef = React.createRef()
-        this.isStateCodeValid = this.isStateCodeValid.bind(this)
-        this.handleClose = this.handleClose.bind(this)
     }
 
     handleClose = () =>{
@@ -36,8 +37,19 @@ export default class SearchBar extends Component {
         this.clearLimitInput()
     }
 
+    handleAlertClose = () =>{
+        this.setState(
+            { 
+                alert: false,
+                error: null 
+            }
+        )
+        this.clearStateCodeInput()
+        this.clearLimitInput()
+    }
+
     updateStateCode = (stateCode) => {
-        // How do I write test for Line 40?
+        // Write test for Line 40
         this.setState({
             stateCodeValid: null, 
             limitValid: null,
@@ -50,12 +62,14 @@ export default class SearchBar extends Component {
         if(!this.state.stateCode) {
             this.setState({
                 stateCodeValidationMessage: 'You must enter a US State',
-                stateCodeValid: false
+                stateCodeValid: false,
+                alert: true
             })
         } else if (this.state.stateCode.length !== 2) {
             this.setState({
                 stateCodeValidationMessage: 'Please enter the two letter state code',
-                stateCodeValid: false
+                stateCodeValid: false,
+                alert: true
             })
         } else {
             this.setState({
@@ -88,12 +102,14 @@ export default class SearchBar extends Component {
         if(this.state.limit < 1 || this.state.limit > 50) {
             this.setState({
                 limitValidationMessage: 'Please enter a number between 1 - 50',
-                limitValid: false
+                limitValid: false, 
+                alert: true
             })
         } else {
             this.setState({
                 limitValidationMessage: '',
-                limitValid: true
+                limitValid: true,
+                alert: true
             },
             () => {
                 this.getParksByState()
@@ -141,7 +157,7 @@ export default class SearchBar extends Component {
             error: null
             })
             const resultArray = this.state.parks
-            // How do I write test for Line 142?  
+            // Write test for Line 142  
             const results = resultArray.map(park => ({  
                 id: park.id,
                 photo: park.images[0] || null,
@@ -152,11 +168,12 @@ export default class SearchBar extends Component {
                 })
             );
             // reset App to starting state except for results & isModalOpen
-            // How do I write test for Line 153?
+            // Write test for Line 153
             this.setState({
                 results:results, 
                 parks: [],
                 error: null,
+                alert: false,
                 stateCode: null,
                 stateCodeValid: null,
                 stateCodeValidationMessage: null,
@@ -168,9 +185,10 @@ export default class SearchBar extends Component {
             })       
         })
         .catch(err => {
-            // How do I write test for Line 169?
+            // Write test for Line 169
             this.setState({
-            error: err.message
+            error: err.message,
+            alert: true
             })
         })
     }
@@ -180,19 +198,31 @@ export default class SearchBar extends Component {
         return(
             <>
                 <section className='SearchParks'>
-                    {this.state.stateCodeValid === false ? (
-                            <div data-test='error-message-state-code-message' className='error__message_container'>
-                                <p className='error__message'>{this.state.stateCodeValidationMessage}</p>
-                            </div>
+                    {this.state.stateCodeValid === false && this.state.alert === true ? (
+                            <Alert 
+                                key="danger" 
+                                variant="danger" 
+                                bsPrefix="alert-msg"
+                                data-test='error-message-state-code-message'
+                                >
+                                    {this.state.stateCodeValidationMessage}
+                                    <p className="alert-close" onClick={() => this.handleAlertClose()} >x</p>
+                            </Alert>
                     ) : (
                             <div data-test='error-message-state-code-message' className='hidden'>
                             </div>
                     )}
 
-                    {this.state.limitValid === false ? (
-                            <div data-test='error-message-limit-message' className='error__message_container'>
-                                <p className='error__message'>{this.state.limitValidationMessage}</p>
-                            </div>
+                    {this.state.limitValid === false && this.state.alert === true ?(
+                            <Alert 
+                                key="danger" 
+                                variant="danger" 
+                                bsPrefix="alert-msg"
+                                data-test='error-message-limit-message' 
+                            >
+                                {this.state.limitValidationMessage}
+                                <p className="alert-close" onClick={() => this.handleAlertClose()} >x</p>
+                            </Alert>
                     ) : (
                             <div data-test='error-message-limit-message' className='hidden'>
                             </div>
@@ -208,51 +238,110 @@ export default class SearchBar extends Component {
                             </div>
                     )}
 
-                    <form 
-                        className='form-flexbox'
+                   
+                {/* Desktop Form */}
+                    <Form 
+                        className="form-desktop"
                         onSubmit={event => {
                             this.isStateCodeValid(event)
                         }}
                     >
-                        <div className='field form-group'>
-                            <label htmlFor='state-code'>
-                                <input
+                        <Col className="my-1" style={{ width: '35%', margin: '0', padding: '0' }}>
+                            <Form.Group className="" controlId="formStateCode">
+                                <Form.Label className="visually-hidden">two letter State Code</Form.Label>
+                                <Form.Control 
+                                    type="text" 
+                                    placeholder="Enter State (two letter code)" 
+                                    bsPrefix="styled-input" 
                                     data-test='state-code-input'
-                                    label = 'state-code'
                                     ref={this.inputStateCodeRef}
-                                    type='text'
-                                    placeholder='Enter State (two letter code)'
-                                    className='search-this-state'
                                     name='state-code'
                                     aria-required='true'
                                     onClick={event => this.clearStateCodeInput(event.target.value)}
                                     onChange={event => this.updateStateCode(event.target.value)}
                                 />
-                            </label>
-                        </div>
-                        <div className='field form-group'>
-                            <label htmlFor='search-limit'>
-                                <input
+                            </Form.Group>
+                        </Col>
+
+                        <Col className="my-1" style={{ width: '35%', margin: '0', padding: '0' }}>
+                            <Form.Group className="" controlId="formSearchLimit">
+                                <Form.Label className="visually-hidden">Search Limit</Form.Label>
+                                <Form.Control 
+                                    type="number" 
+                                    placeholder="How Many Parks? (1 - 50)" 
+                                    bsPrefix="styled-input"
                                     data-test='search-limit-input'
                                     ref={this.inputLimitRef}
-                                    type='number'
-                                    placeholder='How Many Parks? (1 - 50)' 
-                                    className='search-limit'
                                     name='search-limit'
                                     aria-required='false'
                                     onClick={event => this.clearLimitInput(event.target.value)}
                                     onChange={event => this.updateSearchLimit(event.target.value)}
                                 />
-                            </label>
-                        </div>
-                        <div className='button form-submit'>
-                            <button type='submit' data-test='submit-button' className='submit'>
-                                Submit
-                            </button>
-                        </div>
+                            </Form.Group>
+                        </Col>
 
-                    </form>
+                        <Col className="my-1" style={{ width: '30%', margin: '0', padding: '0' }}>
+                            <Button  className="" type="submit" bsPrefix="btn-flat" data-test='submit-button'>
+                                Submit
+                            </Button>
+                        </Col>
+
+                    </Form>
+
+                {/* MOBILE FORM */}
+                    <Form 
+                        className="form-mobile"
+                        onSubmit={event => {
+                            this.isStateCodeValid(event)
+                        }}
+                    >
+    
+                        <Col className="mt-4 mb-2" style={{ width: '100%', padding: '0' }}>
+                            <Form.Group className="" controlId="formStateCode">
+                                <Form.Label className="visually-hidden">two letter State Code</Form.Label>
+                                <Form.Control 
+                                    type="text" 
+                                    placeholder="Enter State (two letter code)" 
+                                    bsPrefix="styled-input" 
+                                    data-test='state-code-input'
+                                    ref={this.inputStateCodeRef}
+                                    name='state-code'
+                                    aria-required='true'
+                                    onClick={event => this.clearStateCodeInput(event.target.value)}
+                                    onChange={event => this.updateStateCode(event.target.value)}
+                                />
+                            </Form.Group>
+                        </Col>
+           
+                        <Col className="mb-2" style={{ width: '100%', padding: '0' }}>
+                            <Form.Group className="" controlId="formSearchLimit">
+                                <Form.Label className="visually-hidden">Search Limit</Form.Label>
+                                <Form.Control 
+                                    type="number" 
+                                    placeholder="How Many Parks? (1 - 50)" 
+                                    bsPrefix="styled-input"
+                                    data-test='search-limit-input'
+                                    ref={this.inputLimitRef}
+                                    name='search-limit'
+                                    aria-required='false'
+                                    onClick={event => this.clearLimitInput(event.target.value)}
+                                    onChange={event => this.updateSearchLimit(event.target.value)}
+                                />
+                            </Form.Group>
+                        </Col>
+  
+                        <Col className="mb-2" style={{ width: '100%', padding: '0' }}>
+                            <Button  className="" type="submit" bsPrefix="btn-flat" data-test='submit-button'>
+                                Submit
+                            </Button>
+                        </Col>
+                       
+
+                    </Form>
+
                 </section>
+
+
                 <section className='SearchResults'>
                     {this.state.results.length ?
                         (<div className="result-list-container">

@@ -36,7 +36,7 @@ html, body {
   min-height: calc(80vh - 50px);
   max-height: calc(80vh - 50px);
   overflow-y: hidden;
-  object-fit: cover;
+  object-fit: contain;
   z-index: 100
 }
 
@@ -44,7 +44,8 @@ html, body {
   position: fixed;
   overflow-y: hidden;
   top: 0;
-  height: 95%;
+  height: 100%;
+  width: auto;
 }
   
 body {
@@ -114,6 +115,11 @@ p{
     max-height: calc(100vh - 15px);
     overflow-y: hidden;
     background-size: cover; 
+  }
+
+  .bkgrnd {
+    width: 100%;
+    height: auto;
   }
 
   header > h1, h2{

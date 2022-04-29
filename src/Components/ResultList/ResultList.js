@@ -6,6 +6,7 @@ import './ResultList.css'
 
 
 export default function ResultList(props){
+    console.log(props.results)
     return(
         <div className='result-list' open={props.isResultListOpen}>
 
@@ -14,17 +15,19 @@ export default function ResultList(props){
             </button>
 
             <ul data-test='result-ul' className = 'ul--grid-container'>
+            
                 {props.results.map(park => (
                     <li data-test='card-as-li' className='li--grid-item' key={park.id}>
                         <Card
-                        photo = {park.photo}
-                        name = {park.name}
-                        state = {park.state}
-                        description = {park.description}
-                        website = {park.url}
-                        />             
-                    </li> 
+                            photo = {park.photo}
+                            name = {park.name}
+                            state = {park.state}
+                            description = {park.description}
+                            website = {park.url}
+                        /> 
+                    </li>    
                 ))}
+
             </ul>
         </div>
     )

@@ -1,60 +1,24 @@
 /****************** FORM ******************/
 
+.form-mobile {
+    display: inline;
+}
+
+.form-desktop {
+    display: none;
+}
+
 form {
     background-color: #363d1f;
     width: 100%;
     position: fixed;
     bottom: 0vh;
-    padding: 6vh 5% 6.5vh;
-    height: 20vh;
-    margin-bottom: -.5vh;
-}
-
-.form-flexbox {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    height: 32vh;
+    display:flex;
     align-items: center;
-}
-
-.form-group {
-    margin-bottom: 1vh;
-    width: 300px;
-    max-width: 100%;
-}
-
-.form-submit {
-    width: 300px;
-    max-width: 100%;
-}
-
-input[type="text"] {
-    padding: 1.25vh 25px;
-    width: 300px;
-    max-width: 100%;
-    outline: none;
-    font-size: 1em;
-    font-weight: 300;
-    letter-spacing: .03em;
-    color: #d0c689;
-    background-color: #424b27;
-    text-align: left;
-    border:1px solid #d0c689;
-    border-radius: 5px;
-    }
-
-input[type=number] {
-    padding: 1.25vh 25px;
-    width: 300px;
-    max-width: 100%;
-    outline: none;
-    font-size: 1em;
-    font-weight: 300;
-    background-color: #424b27;
-    color: #d0c689; 
-    text-align: left;
-    border:1px solid #d0c689;
-    border-radius: 5px;
+    padding:0% 3%;
+    justify-content: flex-start;
+    gap: 2%;
 }
 
 ::placeholder {
@@ -82,48 +46,7 @@ input:-webkit-autofill:focus {
     -webkit-text-fill-color: #d0c689;
     box-shadow: 0 0 0 50px #424b27 inset;
     caret-color: #d0c689;
-}  
-
-button {
-    padding: 1.25vh 0;
-    margin: 0 87.5px;
-    width: 125px;
-    max-width: 100%;
-    background-color: #d0c689;
-    color: #515C30;
-    font-size: 1em;
-    font-weight: 100;
-    letter-spacing: .05em;
-    border:2px solid #d0c689;
-    border-radius: 5px;
-}
-
-button:hover {
-    cursor: pointer;
-}
-
-button:focus {
-    outline: none;
-}
-
-.error__message_container{
-    position: absolute;
-    top: 45%;
-    width: 40%;
-    margin: 0 30%;
-    border: 3px solid #C23C47;
-    background-color: #FFF6F6;
-    color:  #C23C47;
-    padding: 10px;
-}
-
-.error__message_container p {
-    text-align: center;
-    margin: 15px;
-    font-size: 1.3em;
-    letter-spacing: .05em;
-    color:  #C23C47;
-}
+} 
 
 .loading-container {
     position: absolute;
@@ -158,48 +81,103 @@ button:focus {
     100% { transform: rotate(360deg); }
   }
 
+/* Bootstrap customizations */
+
+.col-mobile {
+    display: block;
+}
+
+.col-desktop {
+    display: none;
+}
+
+.btn-flat {
+    padding: 1.15vh 50px;
+    background-color: #d0c689;
+    color: #515C30;
+    font-size: 1.15em;
+    font-weight: 400;
+    letter-spacing: .05em;
+    border:2px solid #d0c689;
+    border-radius: 5px;
+    width:60%;
+    margin: 0 20%;
+}
+
+.styled-input{
+    padding: 1.25vh 75px 1.25vh 25px;
+    outline: none;
+    width:100%;
+    font-size: 1.15em;
+    font-weight: 300;
+    letter-spacing: .03em;
+    color: #d0c689;
+    background-color: #424b27;
+    text-align: left;
+    border:1px solid #d0c689;
+    border-radius: 5px;
+}
+
+.alert-msg{
+    position: absolute;
+    font-size: 1.15em;
+    top: 45vh;
+    width: 40%;
+    left: 30%;
+    background-color: #f7d7db;
+    color: #711d26;
+    border: 1px solid #f4c7cc;
+    border-radius: 5px;
+    padding: 15px 25px;
+}
+
+.alert-close {
+    color: #711d26;
+    position: absolute;
+    right: 2%;
+    top: 12%;
+    font-size: 1.75em;
+    line-height: 1.25em;
+    z-index: 10000;
+    cursor: pointer;
+}
+
 
 /**************************************** For Tablets and Up *********************************/
 @media (min-width: 1000px){
 
+    .form-mobile {
+        display: none;
+    }
+
+    .form-desktop {
+        display: flex;
+    }
+    
     form {
-        padding: 0 5%;
-        height: 14vh;
+        height: 13vh;
     }
 
-    .form-flexbox {
-        flex-direction: row;
-        justify-content: space-between
+    .col-desktop {
+        display: inline;
     }
 
-    .form-group {
-        flex-basis: 40%;
-        margin-bottom: 0;
-    }    
-
-    .form-submit {
-        flex-basis: 15%;
+    /* customized Bootstrap styling */
+    .btn-flat {
+        width:60%;
+        margin: 0;
     }
 
-    input[type="text"] {
-        padding: 1.5vh 25px;
-        margin-right: 3%;
-        font-size: 1.15em;
-        width: 100%;
+    .styled-input{
+        width:100%;
     }
 
-    input[type=number] {
-        padding: 1.5vh 25px;
-        margin-left: 3%;
-        font-size: 1.15em;
-        width: 100%;
+    .alert-msg{
+        width: 40%;
+        left: 30%;
     }
 
-    button {
-        padding: 1.5vh 0;
-        font-size: 1.15em;
-        width: 200px;
-    }
+    /* End of customized Bootstrap styling */
 
     .loading-container {
         width: 30%;
@@ -211,13 +189,3 @@ button:focus {
     }
 }
 
-
-@media (min-width: 1680px){
-    input[type="text"] {
-        margin-right: 1%;
-    }
-
-    input[type=number] {
-        margin-left: 1%;
-    }
-}

@@ -12,10 +12,11 @@
 
 
 .close-button {
+    background-color: rgba(0,0,0,0);
     z-index: 1000;
     padding: 0 1.5vh 2vh;
     border: 0;
-    margin-left: 87%;
+    margin-left: 95%;
     width: 10%;
 }
 
@@ -37,7 +38,7 @@
 /***************************For Tablets and Up****************************/
 @media (min-width: 1000px){
   .close-button {
-    margin-left: 89%;
+    margin-left: 91%;
   }
   .ul--grid-container{
     grid-template-columns: 33% 33% 33%;
@@ -49,7 +50,7 @@
 @media (min-width: 1680px){
 
   .close-button {
-    margin-left: 90.5%;
+    margin-left: 92%;
   }
 
   .ul--grid-container{
