@@ -23,7 +23,7 @@
 
 <h3>BUILT WITH</h3>
 <ul>
-    <li>React Native</li>
+    <li>React</li>
     <li>FETCH</li>
     <li>RESTful API Design</li>
     <li>Test-Driven Development (TDD)</li>
